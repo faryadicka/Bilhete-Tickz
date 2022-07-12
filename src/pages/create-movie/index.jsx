@@ -509,7 +509,7 @@ const CreateMovie = () => {
         <div className="container mt-5">
           <h5 className="fw-bold">Sales Charts</h5>
           <div className={`${styles.cardDashboard}`}>
-            <div className="d-flex">
+            <div className="d-flex justify-content-between">
               <h6 className="border-bottom border-2 pb-2 border-primary">Based on Movie</h6>
               <div clasName="d-flex justify-content-between">
                     <select onChange={(e) => {
