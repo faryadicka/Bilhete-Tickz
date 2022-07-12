@@ -34,7 +34,14 @@ const CardOrderHistory = ({ name, show_date, name_cinemas, status, id }) => {
                </div>
                <div className="col-md-3">
                   <div className={`position-relative ${styles.ShowDetails}`}>
-                     <p onClick={() => router.push(`/ticket/${id}`)}>
+                     <p
+                        onClick={() => {
+                           if (status === 'unpaid') {
+                              return router.push(`/payment/${id}`);
+                           }
+                           router.push(`/ticket/${id}`);
+                        }}
+                     >
                         Show Details <ChevronDown />
                      </p>
                   </div>
