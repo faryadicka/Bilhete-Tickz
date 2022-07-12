@@ -94,7 +94,7 @@ const LayoutLoggedIn = ({ children, title }) => {
                       router.push(`/create-movie`);
                     }}
                   >
-                    Create Movie
+                    Create Schedule
                   </div>
                 ) : null}
                 <div
@@ -107,15 +107,6 @@ const LayoutLoggedIn = ({ children, title }) => {
                 </div>
               </Nav>
               <div className="d-flex gap-4 justify-content-md-end justify-content-end align-items-center">
-                {/* <div
-                           onClick={() => {
-                              showDropdown(!dropdown);
-                           }}
-                           className={`${Styles.dropDownNav}`}
-                        >
-                           Location <ChevronDown />
-                           {dropdown ? <div className={Styles.DropdownLoc}>Purwokerto</div> : null}
-                        </div> */}
                 <div className={`mt-1 ${Styles.searchNav}`}>
                   <Image
                     onClick={() => {

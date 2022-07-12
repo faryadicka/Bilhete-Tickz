@@ -33,7 +33,7 @@ const CreateMovie = () => {
   const [location, setLocation] = useState([]);
   const [time, setTime] = useState([]);
   const [cinemaId, setCinemaId] = useState([]);
-  const [previewImg, setPreviewImg] = useState(null)
+  const [previewImg, setPreviewImg] = useState(null);
   const [form, setForm] = useState({
     name: "",
     category: "",
@@ -76,13 +76,13 @@ const CreateMovie = () => {
 
   const handleInputFile = (e) => {
     const file = e.target.files[0];
-    if(file){
-      const reader = new FileReader()
+    if (file) {
+      const reader = new FileReader();
       reader.onload = () => {
-        setPreviewImg(reader.result)
+        setPreviewImg(reader.result);
         setForm({ ...form, img: file });
-      }
-      reader.readAsDataURL(file)
+      };
+      reader.readAsDataURL(file);
     }
   };
   const formCreateMovie = () => {
@@ -172,7 +172,12 @@ const CreateMovie = () => {
                   }}
                   className="btn col-md-4 p-4 border border-1 rounded-3"
                 >
-                  <Image src={previewImg ? previewImg : Default} width={'150px'} height={'250px'} className={styles.image}/>
+                  <Image
+                    src={previewImg ? previewImg : Default}
+                    width={"150px"}
+                    height={"250px"}
+                    className={styles.image}
+                  />
                 </div>
                 <input
                   type="file"
@@ -374,7 +379,7 @@ const CreateMovie = () => {
                 <div
                   onClick={() => {
                     setDrop(!drop);
-                    setCinemaId([])
+                    setCinemaId([]);
                   }}
                   className={`d-flex justify-content-between align-items-center ${styles.cardDrop}`}
                 >
@@ -410,14 +415,20 @@ const CreateMovie = () => {
                   <div
                     key={item.id}
                     onClick={() => {
-                      setCinemaId([...cinemaId, item.id])
-                      let newSelectCinemas = [...cinemaId]
-                      if(newSelectCinemas.includes(item.id)){
-                        setCinemaId(newSelectCinemas.filter((cinema) => cinema !== item.id))
+                      setCinemaId([...cinemaId, item.id]);
+                      let newSelectCinemas = [...cinemaId];
+                      if (newSelectCinemas.includes(item.id)) {
+                        setCinemaId(
+                          newSelectCinemas.filter(
+                            (cinema) => cinema !== item.id
+                          )
+                        );
                       }
                     }}
                     className={`btn col-md-1 mt-4 ${
-                      cinemaId.includes(item.id) ? styles.chooseCinema : styles.cinema
+                      cinemaId.includes(item.id)
+                        ? styles.chooseCinema
+                        : styles.cinema
                     }`}
                   >
                     <Image
@@ -480,6 +491,19 @@ const CreateMovie = () => {
             >
               Create Movie
             </button>
+          </div>
+        </div>
+        <div className="container mt-5">
+          <h5 className="fw-bold">Sales Charts</h5>
+          <div className={`${styles.cardDashboard}`}>
+            <div className="d-flex">
+              <h6 className="border-bottom border-2 pb-2 border-primary">Based on Movie</h6>
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className={styles.chartCard}>
+                <h1>MULAI DARI SINI</h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
