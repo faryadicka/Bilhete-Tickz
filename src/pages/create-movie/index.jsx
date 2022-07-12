@@ -156,6 +156,7 @@ const CreateMovie = () => {
         setShow(true);
       });
   };
+  
   return (
     <LayoutLoggedIn title="Create Movie">
       <div className={`${styles.containerCreateMovie}`}>

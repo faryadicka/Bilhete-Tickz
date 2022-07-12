@@ -35,3 +35,7 @@ export const getShowTimesAxios = (id = '', location = '', date = '', sort = '', 
    const URL = `${NEXT_PUBLIC_BE_HOST}/showtimes/${id}?location=${location}&date=${date}&sort=${sort}&order=${order}&page=${page}`;
    return axios.get(URL);
 };
+export const getDashboard = (token, id) => {
+   const URL = `${NEXT_PUBLIC_BE_HOST}/payments/dashboard?created_at=${created_at}&id=${id}`;
+   return axios.get(URL, config(token));
+ };
