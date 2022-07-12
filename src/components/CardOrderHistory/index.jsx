@@ -29,7 +29,7 @@ const CardOrderHistory = ({ name, show_date, name_cinemas, status, id }) => {
             <div className="d-flex justify-content-between align-items-center pt-4">
                <div className="col-md-6">
                   <div>
-                     <button className={styles.buttonActive}>Ticket in Active</button>
+                     <div className={styles.buttonActive}>Ticket in Active</div>
                   </div>
                </div>
                <div className="col-md-3">
