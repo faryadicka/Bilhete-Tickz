@@ -18,14 +18,14 @@ export default function LayoutAuth({ children, title, step = 1 }) {
                {title === 'Sign In' ? (
                   <div className={styles.loginContainer}>
                      <div className={styles.BrandNameLogin} onClick={()=> router.push('/')}>
-                        BILHETE TICKZ
+                        Bilhete Tickz
                         <TicketDetailedFill className={styles.logo} />
                      </div>
                      <div className={styles.subTitle}>wait, watch, wow!</div>
                   </div>
                ) : title === 'Forgot Password' ? (
                   <>
-                     <div className={styles.BrandName} onClick={()=> router.push('/')}>BILHETE TICKZ <TicketDetailedFill className={styles.logo} /></div>
+                     <div className={styles.BrandName} onClick={()=> router.push('/')}>Bilhete Tickz <TicketDetailedFill className={styles.logo} /></div>
                      <div className={styles.title}>Lets reset your password</div>
                      <div className={styles.info}>To be able to use your account again, please complete the following steps.</div>
                      <div className={styles.stepContainer}>
@@ -47,7 +47,7 @@ export default function LayoutAuth({ children, title, step = 1 }) {
                   </>
                ) : (
                   <>
-                     <div className={styles.BrandName} onClick={()=> router.push('/')}>BILHETE TICKZ <TicketDetailedFill className={styles.logo} /></div>
+                     <div className={styles.BrandName} onClick={()=> router.push('/')}>Bilhete Tickz <TicketDetailedFill className={styles.logo} /></div>
                      <div className={styles.title}>Lets build your account</div>
                      <div className={styles.info}>To be a loyal moviegoer and access all of features, your details are required.</div>
                      <div className={styles.stepContainer}>
