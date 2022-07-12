@@ -11,8 +11,21 @@ export const createMoviesAxios = (body, token) => {
    });
 };
 
+const config = (token) => {
+   return {
+     headers: {
+       Authorization: `Bearer ${token}`,
+     },
+   };
+ };
+
 export const getMoviesHomeAxios = () => {
    const URL = `${NEXT_PUBLIC_BE_HOST}/movies?page=1&limit=5`;
+   return axios.get(URL);
+};
+
+export const getAllMoviesHomeAxios = () => {
+   const URL = `${NEXT_PUBLIC_BE_HOST}/movies`;
    return axios.get(URL);
 };
 
@@ -35,7 +48,7 @@ export const getShowTimesAxios = (id = '', location = '', date = '', sort = '', 
    const URL = `${NEXT_PUBLIC_BE_HOST}/showtimes/${id}?location=${location}&date=${date}&sort=${sort}&order=${order}&page=${page}`;
    return axios.get(URL);
 };
-export const getDashboard = (token, id) => {
+export const getDashboard = (token, created_at, id) => {
    const URL = `${NEXT_PUBLIC_BE_HOST}/payments/dashboard?created_at=${created_at}&id=${id}`;
    return axios.get(URL, config(token));
  };

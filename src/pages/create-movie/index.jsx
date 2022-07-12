@@ -1,9 +1,10 @@
 //Import from Package
 import { Modal } from "react-bootstrap";
 import { ChevronDown, X } from "react-bootstrap-icons";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import BarChart from "../../components/Dashboard/index";
 //ComponentsLocal
 import CustomModal from "../../components/CustomModal/index";
 import LayoutLoggedIn from "../../components/LayoutLoggedIn/LayoutLoggedIn";
@@ -19,7 +20,8 @@ import {
   getCinemasBandungAxios,
   getCinemasJakartaAxios,
 } from "../../modules/cinemas";
-import { createMoviesAxios } from "../../modules/movies";
+import { createMoviesAxios, getAllMoviesHomeAxios } from "../../modules/movies";
+
 
 const CreateMovie = () => {
   const token = useSelector((state) => state.auth.loginData?.token);
@@ -33,6 +35,9 @@ const CreateMovie = () => {
   const [location, setLocation] = useState([]);
   const [time, setTime] = useState([]);
   const [cinemaId, setCinemaId] = useState([]);
+  const [name, setName] = useState([]);
+  const [fill, setFill] = useState("week")
+  // const [chartData, setChartData] = useState({});
   const [previewImg, setPreviewImg] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -50,6 +55,16 @@ const CreateMovie = () => {
   });
   const inputFile = useRef();
   const router = useRouter();
+
+  useEffect(() => {
+        getAllMoviesHomeAxios()
+            .then((res) => {
+                // console.log(res)
+                setName(res.data?.data);
+            }).catch((err) => {
+                console.log(err)
+            })
+    }, [])
 
   const getCinemasBandung = () => {
     getCinemasBandungAxios()
@@ -156,7 +171,6 @@ const CreateMovie = () => {
         setShow(true);
       });
   };
-  
   return (
     <LayoutLoggedIn title="Create Movie">
       <div className={`${styles.containerCreateMovie}`}>
@@ -425,11 +439,10 @@ const CreateMovie = () => {
                         );
                       }
                     }}
-                    className={`btn col-md-1 mt-4 ${
-                      cinemaId.includes(item.id)
-                        ? styles.chooseCinema
-                        : styles.cinema
-                    }`}
+                    className={`btn col-md-1 mt-4 ${cinemaId.includes(item.id)
+                      ? styles.chooseCinema
+                      : styles.cinema
+                      }`}
                   >
                     <Image
                       src={item.pictures ? item.pictures : <></>}
@@ -478,10 +491,10 @@ const CreateMovie = () => {
                 </button>
                 {showTime
                   ? time.map((item) => (
-                      <button key={item} className="btn">
-                        {item}
-                      </button>
-                    ))
+                    <button key={item} className="btn">
+                      {item}
+                    </button>
+                  ))
                   : null}
               </div>
             </div>
@@ -498,10 +511,27 @@ const CreateMovie = () => {
           <div className={`${styles.cardDashboard}`}>
             <div className="d-flex">
               <h6 className="border-bottom border-2 pb-2 border-primary">Based on Movie</h6>
+              <div clasName="d-flex justify-content-between">
+                    <select onChange={(e) => {
+                          router.push(`/create-movie?id=${e.target.value}&created_at=${fill}`)
+                        }}>
+                      {name.map((item) => (
+                        <option key={item.id} value={item.id}>{item.name}</option>
+                      ))}
+                    </select>
+                    <select onChange={(e) => {
+                          setFill(e.target.value)
+                          // router.push(`/create-movie?name=${router.query.name}&created_at=${e.target.value}`)
+                        }}>
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                        <option value="year">Year</option>
+                    </select>
+              </div>
             </div>
             <div className="d-flex justify-content-center">
               <div className={styles.chartCard}>
-                <h1>MULAI DARI SINI</h1>
+              <BarChart/>
               </div>
             </div>
           </div>
