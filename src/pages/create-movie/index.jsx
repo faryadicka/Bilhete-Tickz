@@ -514,7 +514,7 @@ const CreateMovie = () => {
               <h6 className="border-bottom border-2 pb-2 border-primary">
                 Based on Movie
               </h6>
-              <div clasName="d-flex justify-content-between">
+              <div clasName="d-flex justify-content-between gap-3">
                 <select
                   onChange={(e) => {
                     router.push(
@@ -532,7 +532,7 @@ const CreateMovie = () => {
                   onChange={(e) => {
                     if (router.asPath.includes("id")) {
                       router.push(
-                        `/create-movie?id=${router.query.name}&created_at=${e.target.value}`
+                        `/create-movie?id=${router.query.id}&created_at=${e.target.value}`
                       );
                     }
                   }}
