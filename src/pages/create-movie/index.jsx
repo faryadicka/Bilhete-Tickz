@@ -22,7 +22,6 @@ import {
 } from "../../modules/cinemas";
 import { createMoviesAxios, getAllMoviesHomeAxios } from "../../modules/movies";
 
-
 const CreateMovie = () => {
   const token = useSelector((state) => state.auth.loginData?.token);
   const [showModal, setShowModal] = useState(false);
@@ -36,7 +35,7 @@ const CreateMovie = () => {
   const [time, setTime] = useState([]);
   const [cinemaId, setCinemaId] = useState([]);
   const [name, setName] = useState([]);
-  const [fill, setFill] = useState("week")
+  const [fill, setFill] = useState("week");
   // const [chartData, setChartData] = useState({});
   const [previewImg, setPreviewImg] = useState(null);
   const [form, setForm] = useState({
@@ -57,14 +56,15 @@ const CreateMovie = () => {
   const router = useRouter();
 
   useEffect(() => {
-        getAllMoviesHomeAxios()
-            .then((res) => {
-                // console.log(res)
-                setName(res.data?.data);
-            }).catch((err) => {
-                console.log(err)
-            })
-    }, [])
+    getAllMoviesHomeAxios()
+      .then((res) => {
+        // console.log(res)
+        setName(res.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const getCinemasBandung = () => {
     getCinemasBandungAxios()
@@ -439,10 +439,11 @@ const CreateMovie = () => {
                         );
                       }
                     }}
-                    className={`btn col-md-1 mt-4 ${cinemaId.includes(item.id)
-                      ? styles.chooseCinema
-                      : styles.cinema
-                      }`}
+                    className={`btn col-md-1 mt-4 ${
+                      cinemaId.includes(item.id)
+                        ? styles.chooseCinema
+                        : styles.cinema
+                    }`}
                   >
                     <Image
                       src={item.pictures ? item.pictures : <></>}
@@ -491,10 +492,10 @@ const CreateMovie = () => {
                 </button>
                 {showTime
                   ? time.map((item) => (
-                    <button key={item} className="btn">
-                      {item}
-                    </button>
-                  ))
+                      <button key={item} className="btn">
+                        {item}
+                      </button>
+                    ))
                   : null}
               </div>
             </div>
@@ -510,28 +511,41 @@ const CreateMovie = () => {
           <h5 className="fw-bold">Sales Charts</h5>
           <div className={`${styles.cardDashboard}`}>
             <div className="d-flex justify-content-between">
-              <h6 className="border-bottom border-2 pb-2 border-primary">Based on Movie</h6>
+              <h6 className="border-bottom border-2 pb-2 border-primary">
+                Based on Movie
+              </h6>
               <div clasName="d-flex justify-content-between">
-                    <select onChange={(e) => {
-                          router.push(`/create-movie?id=${e.target.value}&created_at=${fill}`)
-                        }}>
-                      {name.map((item) => (
-                        <option key={item.id} value={item.id}>{item.name}</option>
-                      ))}
-                    </select>
-                    <select onChange={(e) => {
-                          setFill(e.target.value)
-                          // router.push(`/create-movie?name=${router.query.name}&created_at=${e.target.value}`)
-                        }}>
-                        <option value="week">Week</option>
-                        <option value="month">Month</option>
-                        <option value="year">Year</option>
-                    </select>
+                <select
+                  onChange={(e) => {
+                    router.push(
+                      `/create-movie?id=${e.target.value}&created_at=${fill}`
+                    );
+                  }}
+                >
+                  {name.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  onChange={(e) => {
+                    if (router.asPath.includes("id")) {
+                      router.push(
+                        `/create-movie?id=${router.query.name}&created_at=${e.target.value}`
+                      );
+                    }
+                  }}
+                >
+                  <option value="week">Week</option>
+                  <option value="month">Month</option>
+                  <option value="year">Year</option>
+                </select>
               </div>
             </div>
             <div className="d-flex justify-content-center">
               <div className={styles.chartCard}>
-              <BarChart/>
+                <BarChart />
               </div>
             </div>
           </div>
