@@ -364,13 +364,13 @@ const EditProfile = () => {
                            </div>
                            <div className="text-center text-md-start">
                               {buttonActive ? 
-                              <button type="submit" className={styles.buttonChanges} onClick={handleUpdate}>
+                              <div type="submit" className={styles.buttonChanges} onClick={handleUpdate}>
                                  Update Changes
-                              </button>
+                              </div>
                               :
-                              <button type="submit" className={styles.disbuttonChanges}>
+                              <div type="submit" className={styles.disbuttonChanges}>
                                  Update Changes
-                              </button>
+                              </div>
                               }
                            </div>
                         </>

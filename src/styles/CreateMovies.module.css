@@ -87,8 +87,8 @@
 
 .btnCreate {
   border: 1px solid #5F2EEA;
-  background-color: transparent;
-  color: #5F2EEA;
+  background-color: #5F2EEA;
+  color: #ffffff;
   padding: 10px 50px;
   border-radius: 10px;
 }

@@ -69,6 +69,7 @@ export default function Payment() {
   useEffect(() => {
     paymentCheckAxios(token)
       .then((res) => {
+        console.log(res)
         setMethod(res.data?.data.payment_method);
         setPaymentInfo(res.data.data);
         setIdPayment(res.data?.data.id);

@@ -81,7 +81,13 @@
    border: none;
    color: white;
    border-radius: 10px;
-   padding: 10px 35px;
+   /* padding: 10px 35px; */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   width: 180px;
+   height: 45px;
 }
 
 .cardOrder {
@@ -127,6 +133,9 @@
    width: 360px;
    border-radius: 16px;
    color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .disbuttonChanges {
@@ -137,6 +146,9 @@
   width: 360px;
   border-radius: 16px;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropProfile {
